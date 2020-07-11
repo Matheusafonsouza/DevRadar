@@ -8,5 +8,7 @@ const routes = Router();
 //routes
     //post
 routes.post('/devs', DevController.create);
+    //get
+routes.get('/devs', DevController.index);
 
 module.exports = routes;

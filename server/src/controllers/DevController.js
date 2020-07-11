@@ -1,9 +1,16 @@
 //imports
 const axios = require('axios');
 const Dev = require('../models/Dev');
+const { index } = require('../models/utils/PointSchema');
 
 //methods
 module.exports = {
+    async index(req, res) {
+        const devs = await Dev.find();
+
+        return res.json(devs);
+    },
+
     async create(req, res) {
         const { github_username, techs, latitude, longitude } = req.body;
 
