@@ -1,7 +1,7 @@
 //imports
 const axios = require('axios');
 const Dev = require('../models/Dev');
-const { index } = require('../models/utils/PointSchema');
+const parseStringAsArray = require('../utils/parseStringAsArray');
 
 //methods
 module.exports = {
@@ -16,15 +16,12 @@ module.exports = {
 
         let dev = await Dev.findOne({ github_username });
 
-        console.log(github_username)
-
         if (!dev) {
-            console.log('@@@@@@@@@@@@@@@@@')
             const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
 
             const { name = login, avatar_url, bio } = apiResponse.data;
     
-            const techsArray = techs.split(',').map(tech => tech.trim());
+            const techsArray = parseStringAsArray(techs);
     
             const location = {
                 type: 'Point',
