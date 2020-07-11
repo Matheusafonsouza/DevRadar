@@ -1,8 +1,9 @@
 import React from 'react';
 
-import './global.css';
 import './App.css';
+import './global.css';
 import './Sidebar.css';
+import './Main.css';
 
 function App() {
   return (
@@ -36,7 +37,41 @@ function App() {
         </form>
       </aside>
       <main>
-
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars3.githubusercontent.com/u/42722634?s=460&u=4c1088c0c5e646a2f32e49e0e8d5c1649398377b&v=4" alt="Matheus Afonso"/>
+              <div className="user-info">
+                <strong>Matheus Afonso</strong>
+                <span>ReactJS, React Native, NodeJS</span>
+              </div>
+            </header>
+            <p>Biografia maneira para ficar de teste</p>
+            <a href="https://github.com/Matheusafonsouza">Acessar perfil no Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars3.githubusercontent.com/u/42722634?s=460&u=4c1088c0c5e646a2f32e49e0e8d5c1649398377b&v=4" alt="Matheus Afonso"/>
+              <div className="user-info">
+                <strong>Matheus Afonso</strong>
+                <span>ReactJS, React Native, NodeJS</span>
+              </div>
+            </header>
+            <p>Biografia maneira para ficar de teste</p>
+            <a href="https://github.com/Matheusafonsouza">Acessar perfil no Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars3.githubusercontent.com/u/42722634?s=460&u=4c1088c0c5e646a2f32e49e0e8d5c1649398377b&v=4" alt="Matheus Afonso"/>
+              <div className="user-info">
+                <strong>Matheus Afonso</strong>
+                <span>ReactJS, React Native, NodeJS</span>
+              </div>
+            </header>
+            <p>Biografia maneira para ficar de teste</p>
+            <a href="https://github.com/Matheusafonsouza">Acessar perfil no Github</a>
+          </li>
+        </ul>
       </main>
     </div>
   );
