@@ -7,6 +7,6 @@ const routes = Router();
 
 //routes
     //post
-routes.post('/devs');
+routes.post('/devs', DevController.create);
 
 module.exports = routes;
