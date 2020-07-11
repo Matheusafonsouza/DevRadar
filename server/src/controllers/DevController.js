@@ -7,25 +7,32 @@ module.exports = {
     async create(req, res) {
         const { github_username, techs, latitude, longitude } = req.body;
 
-        const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
+        let dev = await Dev.findOne({ github_username });
 
-        const { name = login, avatar_url, bio } = apiResponse.data;
+        console.log(github_username)
 
-        const techsArray = techs.split(',').map(tech => tech.trim());
+        if (!dev) {
+            console.log('@@@@@@@@@@@@@@@@@')
+            const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
 
-        const location = {
-            type: 'Point',
-            coordinates: [longitude,latitude],
-        };
-
-        const dev = await Dev.create({
-            github_username,
-            name,
-            avatar_url,
-            bio,
-            techs: techsArray,
-            location,
-        });
+            const { name = login, avatar_url, bio } = apiResponse.data;
+    
+            const techsArray = techs.split(',').map(tech => tech.trim());
+    
+            const location = {
+                type: 'Point',
+                coordinates: [longitude,latitude],
+            };
+    
+            dev = await Dev.create({
+                github_username,
+                name,
+                avatar_url,
+                bio,
+                techs: techsArray,
+                location,
+            });
+        }
 
         return res.json(dev);
     }
