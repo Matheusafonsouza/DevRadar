@@ -60,3 +60,9 @@ li.dev-item a {
 li.dev-item a:hover {
     color: #5a2ea6;
 }
+
+@media (max-width: 650px) {
+    main ul {
+        grid-template-columns: 1fr;
+    }
+}
