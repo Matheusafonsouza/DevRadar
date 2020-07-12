@@ -1,6 +1,7 @@
 //imports
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const routes = require('./routes');
 
 //configs
@@ -10,8 +11,9 @@ mongoose.connect("mongodb+srv://guest:123@devradar.a4pcx.mongodb.net/devradar?re
     useUnifiedTopology: true,
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
 //listen
-app.listen(4444);
+app.listen(3333);
