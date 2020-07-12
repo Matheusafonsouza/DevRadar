@@ -8,6 +8,7 @@ import './Main.css';
 
 function App() {
   const [latitude, setLatitude] = useState('');
+  const [devs, setDevs] = useState([]);
   const [longitude, setLongitude] = useState('');
   const [github_username, setGithub_username] = useState('');
   const [techs, setTechs] = useState('');
@@ -28,6 +29,16 @@ function App() {
     );
   }, []);
 
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -38,7 +49,10 @@ function App() {
       longitude
     });
 
-    console.log(response.data);
+    setGithub_username('');
+    setTechs('');
+
+    setDevs([...devs, response.data]);
   }
 
   return (
@@ -99,39 +113,19 @@ function App() {
       </aside>
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars3.githubusercontent.com/u/42722634?s=460&u=4c1088c0c5e646a2f32e49e0e8d5c1649398377b&v=4" alt="Matheus Afonso"/>
-              <div className="user-info">
-                <strong>Matheus Afonso</strong>
-                <span>ReactJS, React Native, NodeJS</span>
-              </div>
-            </header>
-            <p>Biografia maneira para ficar de teste</p>
-            <a href="https://github.com/Matheusafonsouza">Acessar perfil no Github</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars3.githubusercontent.com/u/42722634?s=460&u=4c1088c0c5e646a2f32e49e0e8d5c1649398377b&v=4" alt="Matheus Afonso"/>
-              <div className="user-info">
-                <strong>Matheus Afonso</strong>
-                <span>ReactJS, React Native, NodeJS</span>
-              </div>
-            </header>
-            <p>Biografia maneira para ficar de teste</p>
-            <a href="https://github.com/Matheusafonsouza">Acessar perfil no Github</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars3.githubusercontent.com/u/42722634?s=460&u=4c1088c0c5e646a2f32e49e0e8d5c1649398377b&v=4" alt="Matheus Afonso"/>
-              <div className="user-info">
-                <strong>Matheus Afonso</strong>
-                <span>ReactJS, React Native, NodeJS</span>
-              </div>
-            </header>
-            <p>Biografia maneira para ficar de teste</p>
-            <a href="https://github.com/Matheusafonsouza">Acessar perfil no Github</a>
-          </li>
+          {devs.map(dev => (
+            <li key={dev._id} className="dev-item">
+              <header>
+                <img src={dev.avatar_url} alt={dev.name}/>
+                <div className="user-info">
+                  <strong>{dev.name}</strong>
+                  <span>{dev.techs.join(', ')}</span>
+                </div>
+              </header>
+              <p>{dev.bio}</p>
+              <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no Github</a>
+            </li>
+          ))}
         </ul>
       </main>
     </div>
