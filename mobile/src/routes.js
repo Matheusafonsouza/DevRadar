@@ -11,9 +11,16 @@ const AppStack = createStackNavigator();
 export default function Routes() {
     return (
         <NavigationContainer>
-            <AppStack.Navigator>
-                <AppStack.Screen name="Main" component={Main} />
-                <AppStack.Screen name="Profile" component={Profile} />
+            <AppStack.Navigator
+                screenOptions={{
+                    headerStyle: {
+                        backgroundColor: '#7d40e7',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            >
+                <AppStack.Screen name="Main" component={Main} options={{ title: 'DevRadar' }} />
+                <AppStack.Screen name="Profile" component={Profile} options={{ title: 'Perfil no Github' }} />
             </AppStack.Navigator>
         </NavigationContainer>
     );
