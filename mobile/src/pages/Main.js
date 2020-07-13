@@ -10,6 +10,7 @@ import api from '../services/api';
 export default function Main() {
     const [currentRegion, setCurrentRegion] = useState(null);
     const [devs, setDevs] = useState([]);
+    const [techs, setTechs] = useState('');
 
     const navigation = useNavigation();
 
@@ -43,7 +44,7 @@ export default function Main() {
             params: {
                 latitude,
                 longitude,
-                techs: 'ReactJS',
+                techs,
             }
         });
 
@@ -90,6 +91,8 @@ export default function Main() {
                     placeholderTextColor="#999"
                     autoCapitalize="words"
                     autoCorrect={false}
+                    value={techs}
+                    onChangeText={setTechs}
                 />
                 <TouchableOpacity 
                     style={styles.loadButton}
