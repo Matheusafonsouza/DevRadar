@@ -17,6 +17,7 @@ export default function Routes() {
                         backgroundColor: '#7d40e7',
                     },
                     headerTintColor: '#fff',
+                    headerBackTitleVisible: false,
                 }}
             >
                 <AppStack.Screen name="Main" component={Main} options={{ title: 'DevRadar' }} />

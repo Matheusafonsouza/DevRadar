@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Image, View, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'; 
 
 export default function Main() {
     const [currentRegion, setCurrentRegion] = useState(null);
+
+    const navigation = useNavigation();
 
     useEffect(() => {
         async function loadInitalPosition() {
@@ -40,7 +43,9 @@ export default function Main() {
         >
             <Marker coordinate={{ latitude: -15.9840809, longitude: -47.9911217}}>
                 <Image style={styles.avatar} source={{ uri: "https://avatars3.githubusercontent.com/u/42722634?s=460&u=4c1088c0c5e646a2f32e49e0e8d5c1649398377b&v=4" }} />
-                <Callout>
+                <Callout onPress={() => {
+                    navigation.navigate('Profile', { github_username: 'matheusafonsouza' })
+                }}>
                     <View style={styles.callout}>
                         <Text style={styles.devName} >Matheus Afonso</Text>
                         <Text style={styles.devBio} >Biografia de teste uau</Text>
